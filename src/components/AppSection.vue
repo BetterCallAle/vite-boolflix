@@ -2,7 +2,7 @@
     import {store} from "../store";
     import AppCard from "./AppCard.vue";
     export default{
-        name: "MoviesSection",
+        name: "AppSection",
         props:{
             section: String
         },
@@ -44,7 +44,7 @@
             </div>
 
             <div class="section-main">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
                     <div class="col" v-for="element in store[section]" :key="element.id">
                         <AppCard :title="element[sectionTitle]" :originalTitle="element.original_name" :element="element"/>
                     </div>

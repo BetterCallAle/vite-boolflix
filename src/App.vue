@@ -1,15 +1,13 @@
 <script>
   import axios from "axios";
   import SearchInput from "./components/SearchInput.vue";
-  import MoviesSection from "./components/moviesSection.vue";
-  import SeriesSection from "./components/SeriesSection.vue";
+  import AppSection from "./components/AppSection.vue";
   import { store } from "./store";
   
   export default{
     components:{
       SearchInput,
-      MoviesSection,
-      SeriesSection
+      AppSection
     },
     data(){
       return{
@@ -48,8 +46,10 @@
 
 <template>
   <SearchInput @searchBtnClicked="searchElement"/>
-  <MoviesSection />
-  <SeriesSection />
+  <main>
+    <AppSection :section="'movies'"/>
+    <AppSection :section="'series'"/>
+  </main>
 </template>
 
 <style lang="scss">
