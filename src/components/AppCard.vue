@@ -23,7 +23,7 @@
         methods:{
             // Check if the flag img is in database
             checkIfThereIsImg(){
-                if(this.element.original_language === "it" || this.element.original_language === "en" || this.element.original_language === "fr" || this.element.original_language === "de"){
+                if(this.element.original_language === "it" || this.element.original_language === "en" || this.element.original_language === "fr" || this.element.original_language === "de" || this.element.original_language === "ja"){
                     this.isImgInDatabase = true;
                 }
             },
