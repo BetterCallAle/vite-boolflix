@@ -22,7 +22,6 @@
           this.store.movies = resp.data.results
           console.log(this.store.movies);
         })
-        
       }
     },
     computed:{

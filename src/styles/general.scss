@@ -1,7 +1,12 @@
+@use "./partials/variables" as *;
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 // Styles
+img{
+    max-width: 100%;
+}
+
 ul{
     list-style: none;
 }
