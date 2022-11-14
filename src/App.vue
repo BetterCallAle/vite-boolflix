@@ -23,12 +23,14 @@
         // Movies API
         axios.get(this.apiMoviesUrl)
             .then(resp =>{
+              // add the json data in store
               this.store.movies = resp.data.results
             })
 
         // Series API
         axios.get(this.apiSeriesUrl)
               .then(resp =>{
+              // add the json data in store
              this.store.series = resp.data.results
         })
       }
