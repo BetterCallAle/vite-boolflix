@@ -50,7 +50,7 @@
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
                     <div class="col" v-for="element in store[section]" :key="element.id">
                         <!-- Cards -->
-                        <AppCard :title="element[sectionTitle]" :originalTitle="element.original_name" :element="element"/>
+                        <AppCard :title="element[sectionTitle]" :originalTitle="element[sectionOriginalTitle]" :element="element"/>
                         <!-- /Cards -->
                     </div>
                 </div>
