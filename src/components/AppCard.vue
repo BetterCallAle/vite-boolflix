@@ -13,10 +13,10 @@
 <template>
     <div class="ms_card">
         <ul>
-            <li>{{ title }}</li>
-            <li>{{ originalTitle }}</li>
-            <li>{{ lang }}</li>
-            <li>{{ vote }}</li>
+            <li>Titolo: {{ title }}</li>
+            <li>Titolo Originale: {{ originalTitle }}</li>
+            <li>Lingua Originale: {{ lang }}</li>
+            <li>Voto: {{ vote }}</li>
         </ul>
     </div>
 </template>
