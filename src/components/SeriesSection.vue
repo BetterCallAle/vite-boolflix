@@ -20,7 +20,7 @@
             <h2>Series</h2>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                 <div class="col" v-for="element in store.series" :key="element.id">
-                    <AppCard :title="element.name" :originalTitle="element.original_name" :lang="element.original_language" :vote="element.vote_average"/>
+                    <AppCard :title="element.name" :originalTitle="element.original_name" :element="element"/>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@
             <h2>Movies</h2>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                 <div class="col" v-for="element in store.movies" :key="element.id">
-                    <AppCard :title="element.title" :originalTitle="element.original_title" :lang="element.original_language" :vote="element.vote_average"/>
+                    <AppCard :title="element.title" :originalTitle="element.original_title" :element="element"/>
                 </div>
             </div>
         </div>

@@ -1,20 +1,21 @@
 <script>
+    import {store} from "../store"
     export default{
         name: "AppCard",
         props: {
             title: String,
             originalTitle: String,
-            lang: String,
-            vote: Number
+            element: Object
         },
         data(){
             return{
-                isImgInDatabase: false
+                isImgInDatabase: false,
+                store
             }
         },
         methods:{
             checkIfThereIsImg(){
-                if(this.lang === "it" || this.lang === "en" || this.lang === "fr" || this.lang === "de"){
+                if(this.element.original_language === "it" || this.element.original_language === "en" || this.element.original_language === "fr" || this.element.original_language === "de"){
                     this.isImgInDatabase = true;
                 }
             },
@@ -31,15 +32,18 @@
 
 <template>
     <div class="ms_card">
+        <div class="ms_card-img">
+            <img :src="store.coverURL + element.backdrop_path" :alt="`Cover di ${title}`">
+        </div>
         <ul>
             <li>Titolo: {{ title }}</li>
             <li>Titolo Originale: {{ originalTitle }}</li>
             <li>
                 <span>Lingua Originale: </span>
-                <img v-if="isImgInDatabase" :src="getImgPath(lang)" :alt="`Bandiera ${lang}`" class="flag-img">
-                <span v-else>{{ lang }}</span>
+                <img v-if="isImgInDatabase" :src="getImgPath(element.original_language)" :alt="`Bandiera ${element.original_language}`" class="flag-img">
+                <span v-else>{{ element.original_language }}</span>
             </li>
-            <li>Voto: {{ vote }}</li>
+            <li>Voto: {{ element.original_language }}</li>
         </ul>
     </div>
 </template>

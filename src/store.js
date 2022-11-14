@@ -6,6 +6,7 @@ export const store = reactive({
     apiKey: "75647ca12616033896b9bcef942dad42",
     isPageLoading: false,
     userSearch: "",
+    coverURL: "http://image.tmdb.org/t/p/w342/",
     movies: null,
     series: null
 })
