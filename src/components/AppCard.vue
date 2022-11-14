@@ -11,6 +11,7 @@
         data(){
             return{
                 isImgInDatabase: false,
+                emptyStars: 5,
                 store
             }
         },
@@ -34,7 +35,8 @@
 
             // convert the votes
             convertVotes(){
-                this.element.vote_average = Math.ceil(this.element.vote_average / 2)
+                this.element.vote_average = Math.ceil(this.element.vote_average / 2);
+                this.emptyStars = 5 - this.element.vote_average
             }
         }
     }
@@ -57,8 +59,9 @@
                     <span v-else>{{ element.original_language }}</span>
                 </li>
                 <li>
-                    Voto: {{ element.vote_average }}
-                    <i class="fa-regular fa-star"></i>
+                    Voto:
+                    <i class="fa-solid fa-star" v-for="star in element.vote_average"></i>
+                    <i class="fa-regular fa-star" v-for="star in emptyStars"></i>
                 </li>
             </ul>
         </div>
