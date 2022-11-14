@@ -2,12 +2,14 @@
   import axios from "axios";
   import SearchInput from "./components/SearchInput.vue";
   import MoviesSection from "./components/moviesSection.vue";
+  import SeriesSection from "./components/SeriesSection.vue";
   import { store } from "./store";
   
   export default{
     components:{
       SearchInput,
-      MoviesSection
+      MoviesSection,
+      SeriesSection
     },
     data(){
       return{
@@ -17,16 +19,26 @@
     methods:{
       searchElement(){
         this.store.isPageLoading = true;
+
+        // Movies API
         axios.get(this.apiMoviesUrl)
-        .then(resp =>{
-          this.store.movies = resp.data.results
-          console.log(this.store.movies);
+            .then(resp =>{
+              this.store.movies = resp.data.results
+            })
+
+        // Series API
+        axios.get(this.apiSeriesUrl)
+              .then(resp =>{
+             this.store.series = resp.data.results
         })
       }
     },
     computed:{
       apiMoviesUrl(){
         return this.store.apiMoviesURL + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
+      },
+      apiSeriesUrl(){
+        return this.store.apiSeriesURL + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
       }
     }
   }
@@ -35,6 +47,7 @@
 <template>
   <SearchInput @searchBtnClicked="searchElement"/>
   <MoviesSection />
+  <SeriesSection />
 </template>
 
 <style lang="scss">

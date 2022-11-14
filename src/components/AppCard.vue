@@ -47,7 +47,7 @@
 <style lang="scss" scoped>
 .ms_card{
     .flag-img{
-        width: 30px;
+        width: 20px;
     }
 }
 </style>
