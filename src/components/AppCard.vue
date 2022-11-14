@@ -1,5 +1,6 @@
 <script>
     import {store} from "../store"
+
     export default{
         name: "AppCard",
         props: {
@@ -13,6 +14,11 @@
                 store
             }
         },
+        created(){
+            this.checkIfThereIsImg();
+            this.convertVotes()
+        },
+
         methods:{
             // Check if the flag img is in database
             checkIfThereIsImg(){
@@ -24,10 +30,12 @@
             // Take the img path
             getImgPath(imgName){
                 return new URL(`../assets/img/${imgName}.png`, import.meta.url).href;
+            },
+
+            // convert the votes
+            convertVotes(){
+                this.element.vote_average = Math.ceil(this.element.vote_average / 2)
             }
-        },
-        created(){
-            this.checkIfThereIsImg()
         }
     }
 </script>
@@ -48,7 +56,10 @@
                     <img v-if="isImgInDatabase" :src="getImgPath(element.original_language)" :alt="`Bandiera ${element.original_language}`" class="flag-img">
                     <span v-else>{{ element.original_language }}</span>
                 </li>
-                <li>Voto: {{ element.vote_average }}</li>
+                <li>
+                    Voto: {{ element.vote_average }}
+                    <i class="fa-regular fa-star"></i>
+                </li>
             </ul>
         </div>
     </div>
