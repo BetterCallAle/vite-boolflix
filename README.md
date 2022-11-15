@@ -1,7 +1,11 @@
-# Vue 3 + Vite
+# Boolflix
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This webapp is created for search movies and series form  [The Movie DB API](https://developers.themoviedb.org/3/getting-started/introduction).
 
-## Recommended IDE Setup
+## Used library and frameworks:
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- [Vue + Vite](https://vuejs.org/)
+- [Axios] (https://axios-http.com/docs/intro)
+- [Bootstrap](https://getbootstrap.com/)
+- [Sass] (https://sass-lang.com/)
+- [FontAwesome] (https://fontawesome.com/)
