@@ -114,7 +114,7 @@
         .ms_card-info{
             display: none;
             transform: rotateY(180deg);
-            padding: .7rem;
+            padding: 1.3rem .7rem;
             max-height: $card-height;
             overflow-y: auto;
             transition: all 300ms linear;

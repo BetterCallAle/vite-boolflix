@@ -3,15 +3,13 @@
   import AppHeader from "./components/AppHeader.vue";
   import AppSection from "./components/AppSection.vue";
   import AppSectionFlag from "./components/AppSectionFlag.vue";
-  import AppLoader from "./components/AppLoader.vue";
   import { store } from "./store";
   
   export default{
     components:{
       AppHeader,
       AppSection,
-      AppSectionFlag,
-      AppLoader
+      AppSectionFlag
     },
     data(){
       return{
@@ -21,9 +19,6 @@
     methods:{
       // call the api when clicking search button
       searchElement(){
-        // clear the main element
-        this.store.isPageLoading = true;
-
         // if user search is not empty
         if(this.store.userSearch){
           // call movies API
@@ -46,7 +41,6 @@
             console.error("error", err);
           }).finally(()=> {
             // Show results
-            this.store.isPageLoading = false;
             this.store.isPageLoaded = true;
           })
       },
@@ -65,7 +59,6 @@
             }).finally(()=> {
               // Show results
               this.store.isPageLoading = false;
-              this.store.isPageLoaded = true;
             })
       }
     },
@@ -85,12 +78,11 @@
     <AppHeader @searchBtnClicked="searchElement"/>
 
     <main>
-      <AppLoader v-if="store.isPageLoading"/>
       <!-- If the search button is clicked -->
       <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
       <AppSection v-if="store.isPageLoaded" :section="'series'"/>
       <!-- Else -->
-      <AppSectionFlag v-if="!store.isPageLoading && !store.isPageLoaded"/>
+      <AppSectionFlag v-else/>
     </main>
   </div>
 </template>
