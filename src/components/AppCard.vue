@@ -101,6 +101,7 @@
 
     /* Card wrapper */
     .ms_card-wrapper{
+        height: 100%;
         transform: rotateY(0deg);
         transition: all 500ms linear;
 
@@ -114,7 +115,7 @@
             display: none;
             transform: rotateY(180deg);
             padding: .7rem;
-            height: $card-height;
+            max-height: $card-height;
             overflow-y: auto;
             transition: all 300ms linear;
             
