@@ -8,4 +8,4 @@ This webapp is created by [BetterCallAle](https://github.com/BetterCallAle) for 
 - [Axios](https://axios-http.com/docs/intro)
 - [Bootstrap](https://getbootstrap.com/)
 - [Sass](https://sass-lang.com/)
-- [FontAwesome](https://fontawesome.com/)
+- [Font Awesome](https://fontawesome.com/)
