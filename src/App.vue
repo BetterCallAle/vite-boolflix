@@ -19,18 +19,30 @@
         this.store.isPageLoading = true;
 
         // Movies API
-        axios.get(this.apiMoviesUrl)
-            .then(resp =>{
-              // add the json data in store
-              this.store.movies = resp.data.results
-            })
+        this.callTheApiMovies()
 
         // Series API
-        axios.get(this.apiSeriesUrl)
-              .then(resp =>{
+        this.callTheApiSeries()
+      },
+
+      callTheApiMovies(){
+        // Movies API
+        axios
+          .get(this.apiMoviesUrl)
+          .then(resp =>{
+            // add the json data in store
+            this.store.movies = resp.data.results
+          })
+      },
+
+      callTheApiSeries(){
+         // Series API
+         axios
+            .get(this.apiSeriesUrl)
+            .then(resp =>{
               // add the json data in store
              this.store.series = resp.data.results
-        })
+            })
       }
     },
     computed:{
