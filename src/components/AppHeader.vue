@@ -37,7 +37,7 @@ header{
 
     form{
         .ms_input{
-            padding: .5rem 0.5rem .367rem;
+            padding: 0.55rem 0.5rem 0.330rem;
             border-radius: .375rem;
             border-top-right-radius: 0px;
             border-bottom-right-radius: 0px;
