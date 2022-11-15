@@ -2,12 +2,14 @@
   import axios from "axios";
   import AppHeader from "./components/AppHeader.vue";
   import AppSection from "./components/AppSection.vue";
+  import AppSectionFlag from "./components/AppSectionFlag.vue";
   import { store } from "./store";
   
   export default{
     components:{
       AppHeader,
-      AppSection
+      AppSection,
+      AppSectionFlag
     },
     data(){
       return{
@@ -48,7 +50,7 @@
             .get(this.apiSeriesUrl)
             .then(resp =>{
               // add the json data in store
-             this.store.series = resp.data.results
+              this.store.series = resp.data.results
             }).catch(err =>{
               console.log("error", err);
             }).finally(()=> {
@@ -70,8 +72,11 @@
 <template>
   <AppHeader @searchBtnClicked="searchElement"/>
   <main>
+    <!-- If the search button is clicked -->
     <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
     <AppSection v-if="store.isPageLoaded" :section="'series'"/>
+    <!-- Else -->
+    <AppSectionFlag v-else/>
   </main>
 </template>
 
