@@ -16,13 +16,15 @@
     },
     methods:{
       searchElement(){
-        this.store.isPageLoading = true;
+        this.store.isPageLoaded = false;
 
-        // Movies API
-        this.callTheApiMovies()
+        if(this.store.userSearch){
+          // Movies API
+          this.callTheApiMovies()
 
-        // Series API
-        this.callTheApiSeries()
+          // Series API
+          this.callTheApiSeries()
+        }
       },
 
       callTheApiMovies(){
@@ -35,6 +37,8 @@
             this.store.userSearch = ""
           }).catch(err => {
             console.error("error", err);
+          }).finally(()=> {
+              this.store.isPageLoaded = true
           })
       },
 
@@ -47,6 +51,8 @@
              this.store.series = resp.data.results
             }).catch(err =>{
               console.log("error", err);
+            }).finally(()=> {
+              this.store.isPageLoaded = true
             })
       }
     },
@@ -64,8 +70,8 @@
 <template>
   <AppHeader @searchBtnClicked="searchElement"/>
   <main>
-    <AppSection :section="'movies'"/>
-    <AppSection :section="'series'"/>
+    <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
+    <AppSection v-if="store.isPageLoaded" :section="'series'"/>
   </main>
 </template>
 
