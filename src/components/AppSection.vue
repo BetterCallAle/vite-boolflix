@@ -40,7 +40,7 @@
     <section id="movies-section">
         <div class="container">
             <!-- Section Heading -->
-            <div class="section-heading">
+            <div class="section-heading text-red mb-3">
                 <h2>{{ section }}</h2>
             </div>
             <!-- /Section Heading -->

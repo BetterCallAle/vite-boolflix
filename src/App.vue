@@ -77,14 +77,17 @@
 </script>
 
 <template>
-  <AppHeader @searchBtnClicked="searchElement"/>
-  <main>
-    <!-- If the search button is clicked -->
-    <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
-    <AppSection v-if="store.isPageLoaded" :section="'series'"/>
-    <!-- Else -->
-    <AppSectionFlag v-else/>
-  </main>
+  <div class="app-wrapper">
+    <AppHeader @searchBtnClicked="searchElement"/>
+
+    <main>
+      <!-- If the search button is clicked -->
+      <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
+      <AppSection v-if="store.isPageLoaded" :section="'series'"/>
+      <!-- Else -->
+      <AppSectionFlag v-else/>
+    </main>
+  </div>
 </template>
 
 <style lang="scss">
