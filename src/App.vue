@@ -34,7 +34,7 @@
             this.store.movies = resp.data.results
             this.store.userSearch = ""
           }).catch(err => {
-            console.log("error", err);
+            console.error("error", err);
           })
       },
 

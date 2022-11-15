@@ -47,7 +47,8 @@
 
             <!-- Section Main -->
             <div class="section-main">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+                <h2 v-if="!store[section].length">No {{section}} were found</h2>
+                <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
                     <div class="col" v-for="element in store[section]" :key="element.id">
                         <!-- Cards -->
                         <AppCard :title="element[sectionTitle]" :originalTitle="element[sectionOriginalTitle]" :element="element"/>

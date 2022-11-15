@@ -7,6 +7,6 @@ export const store = reactive({
     isPageLoading: false,
     userSearch: "",
     coverURL: "http://image.tmdb.org/t/p/w342/",
-    movies: null,
-    series: null
+    movies: [],
+    series: []
 })
