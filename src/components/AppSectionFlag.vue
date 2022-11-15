@@ -17,5 +17,6 @@ export default {
     .section-flag{
         text-align: center;
         color: $main-red;
+        margin-top: 3rem
     }
 </style>

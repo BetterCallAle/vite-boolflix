@@ -17,30 +17,34 @@
       }
     },
     methods:{
+      // call the api when clicking search button
       searchElement(){
+        // clear the main element
         this.store.isPageLoaded = false;
 
+        // if user search is not empty
         if(this.store.userSearch){
-          // Movies API
+          // call movies API
           this.callTheApiMovies()
 
-          // Series API
+          // call series API
           this.callTheApiSeries()
         }
       },
 
       callTheApiMovies(){
-        // Movies API
         axios
           .get(this.apiMoviesUrl)
           .then(resp =>{
             // add the json data in store
             this.store.movies = resp.data.results
+            // clear the input
             this.store.userSearch = ""
           }).catch(err => {
             console.error("error", err);
           }).finally(()=> {
-              this.store.isPageLoaded = true
+            // Show results
+            this.store.isPageLoaded = true
           })
       },
 
@@ -51,9 +55,12 @@
             .then(resp =>{
               // add the json data in store
               this.store.series = resp.data.results
+              // clear the input
+              this.store.userSearch = ""
             }).catch(err =>{
               console.log("error", err);
             }).finally(()=> {
+              // Show results
               this.store.isPageLoaded = true
             })
       }

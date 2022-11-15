@@ -19,7 +19,7 @@
     
             <form>
                 <input type="text" v-model="store.userSearch" class="ms_input" placeholder="Search movies or series">
-                <button @click.prevent="$emit('searchBtnClicked')" class="btn ms_btn">Cerca</button>
+                <button @click.prevent="$emit('searchBtnClicked')" class="btn ms_btn">Search</button>
             </form>
         </div>
     </header>
