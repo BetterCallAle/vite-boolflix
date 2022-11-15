@@ -1,12 +1,12 @@
 <script>
   import axios from "axios";
-  import SearchInput from "./components/SearchInput.vue";
+  import AppHeader from "./components/AppHeader.vue";
   import AppSection from "./components/AppSection.vue";
   import { store } from "./store";
   
   export default{
     components:{
-      SearchInput,
+      AppHeader,
       AppSection
     },
     data(){
@@ -32,6 +32,9 @@
           .then(resp =>{
             // add the json data in store
             this.store.movies = resp.data.results
+            this.store.userSearch = ""
+          }).catch(err => {
+            console.log("error", err);
           })
       },
 
@@ -42,6 +45,8 @@
             .then(resp =>{
               // add the json data in store
              this.store.series = resp.data.results
+            }).catch(err =>{
+              console.log("error", err);
             })
       }
     },
@@ -57,7 +62,7 @@
 </script>
 
 <template>
-  <SearchInput @searchBtnClicked="searchElement"/>
+  <AppHeader @searchBtnClicked="searchElement"/>
   <main>
     <AppSection :section="'movies'"/>
     <AppSection :section="'series'"/>

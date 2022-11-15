@@ -2,7 +2,17 @@
 // Import Bootstrap
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
+// Import font
+@import 'node_modules/@fontsource/bebas-neue/index.css';
+
+
 // Styles
+body{
+    font-family: "Bebas Neue", cursive;
+    background-color: $main-bg;
+    color: white;
+}
+
 img{
     max-width: 100%;
 }
