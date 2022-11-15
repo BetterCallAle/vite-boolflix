@@ -101,7 +101,7 @@
 
     /* Card wrapper */
     .ms_card-wrapper{
-        transform: rotateY(0deg) rotateZ(0deg);
+        transform: rotateY(0deg);
         transition: all 500ms linear;
 
         .ms_card-img{
