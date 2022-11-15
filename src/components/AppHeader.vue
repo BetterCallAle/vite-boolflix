@@ -14,7 +14,9 @@
     <header class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
             <div class="logo">
-                <h1 class="text-red">Boolflix</h1>
+                <a href="#">
+                    <h1 class="text-red">Boolflix</h1>
+                </a>
             </div>
     
             <form>
@@ -31,6 +33,10 @@
 header{
     height: $header-height;
     background-color: $header-bg;
+
+    a{
+        text-decoration: none;
+    }
 
     form{
         .ms_input{
