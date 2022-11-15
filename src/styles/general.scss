@@ -19,8 +19,13 @@ img{
 
 ul{
     list-style: none;
+    padding-left: 0px;
 }
 
 section{
     padding: 2rem 0;
+}
+
+.text-red{
+    color: $main-red;
 }

@@ -15,7 +15,7 @@
             }
         },
         computed:{
-            // check if section is title or movies and change title name
+            // check if section is series or movies and change title name
             sectionTitle(){
                 if(this.section === "movies"){
                     return "title"
@@ -24,7 +24,7 @@
                 }
             },
 
-             // check if section is title or movies and change original title name
+             // check if section is series or movies and change original title name
             sectionOriginalTitle(){
                 if(this.section === "movies"){
                     return "original_title"
@@ -50,7 +50,7 @@
                 <!-- If no movies or series were found: -->
                 <h2 v-if="!store[section].length">No {{section}} were found</h2>
                 <!-- Else -->
-                <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-5">
+                <div v-else class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
                     <div class="col" v-for="element in store[section]" :key="element.id">
                         <!-- Cards -->
                         <AppCard :title="element[sectionTitle]" :originalTitle="element[sectionOriginalTitle]" :element="element"/>

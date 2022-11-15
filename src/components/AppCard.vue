@@ -11,6 +11,7 @@
         data(){
             return{
                 isImgInDatabase: false,
+                flagInDatabase: ["it", "de", "en", "fr", "ja"],
                 emptyStars: 5,
                 store
             }
@@ -23,7 +24,7 @@
         methods:{
             // Check if the flag img is in database
             checkIfThereIsImg(){
-                if(this.element.original_language === "it" || this.element.original_language === "en" || this.element.original_language === "fr" || this.element.original_language === "de" || this.element.original_language === "ja"){
+                if(this.flagInDatabase.includes(this.element.original_language)){
                     this.isImgInDatabase = true;
                 }
             },
@@ -33,7 +34,7 @@
                 return new URL(`../assets/img/${imgName}.png`, import.meta.url).href;
             },
 
-            // convert the votes
+            // convert the votes and change the empty stars number
             convertVotes(){
                 this.element.vote_average = Math.ceil(this.element.vote_average / 2);
                 this.emptyStars = 5 - this.element.vote_average
@@ -45,33 +46,115 @@
 <template>
     <div class="ms_card text-center">
 
+        <!-- card img -->
         <div class="ms_card-img">
-            <img :src="store.coverURL + element.backdrop_path" :alt="`Cover di ${title}`">
+            <img :src="store.coverURL + element.poster_path" :alt="`Cover di ${title}`">
         </div>
+        <!-- /card img -->
 
+        <!-- card info -->
         <div class="ms_card-info">
             <ul>
-                <li>Titolo: {{ title }}</li>
-                <li>Titolo Originale: {{ originalTitle }}</li>
+
+                <li> 
+                    <h4>{{ title }}</h4>
+                </li>
+
                 <li>
-                    <span>Lingua Originale: </span>
+                    <span class="text-red">Original Title: </span>
+                    <span>{{ originalTitle }}</span>
+                </li>
+
+                <li>
+                    <span class="text-red">Original Language: </span>
                     <img v-if="isImgInDatabase" :src="getImgPath(element.original_language)" :alt="`Bandiera ${element.original_language}`" class="flag-img">
                     <span v-else>{{ element.original_language }}</span>
                 </li>
+
                 <li>
-                    Voto:
+                    <span class="text-red">Vote: </span>
                     <i class="fa-solid fa-star" v-for="star in element.vote_average"></i>
                     <i class="fa-regular fa-star" v-for="star in emptyStars"></i>
                 </li>
+
+                <li> 
+                    <span class="text-red">Synopsis: </span>
+                    <span>{{element.overview}}</span>
+                </li>
+
             </ul>
         </div>
+        <!-- card info -->
+
     </div>
 </template>
 
 <style lang="scss" scoped>
+@use "../styles/partials/variables" as *;
 .ms_card{
-    .flag-img{
-        width: 20px;
+    height: 100%;
+    background-color: $header-bg;
+    border: 1px solid white;
+    
+    .ms_card-img{
+        img{
+            display: block;
+        }
+    }
+
+    .ms_card-info{
+        display: none;
+        padding: .7rem;
+        height: $card-height;
+        overflow: auto;
+        
+        /* Scrollbar */
+        /* Scrollbar dimension */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Scrollbar track */
+        &::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px grey; 
+            border-radius: 10px;
+        }
+
+        /* Scrollbar color */
+        &::-webkit-scrollbar-thumb {
+            background: $main-red; 
+            border-radius: 10px;
+        }
+
+        /* Scrollbar Hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: lighten($main-red, 10%); 
+        }
+        /* Scrollbar */
+
+        .flag-img{
+            width: $flag-width;
+        }
+
+        li{
+            margin-bottom: .8rem;
+        }
+
+        .text-red{
+            margin-right: .2rem;
+        }
+
+        .fa-star{
+            color: $star-color;
+        }
+    }
+
+    &:hover .ms_card-info{
+       display: block;
+    }
+
+    &:hover .ms_card-img{
+        display: none;
     }
 }
 </style>

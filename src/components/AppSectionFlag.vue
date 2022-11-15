@@ -7,7 +7,7 @@ export default {
 <template>
     <section>
         <div class="container">
-            <h2 class="section-flag">Start searching movies or series</h2>
+            <h2 class="section-flag text-red">Start searching movies or series</h2>
         </div>
     </section>
 </template>
@@ -16,7 +16,6 @@ export default {
     @use "../styles/partials/variables" as *;
     .section-flag{
         text-align: center;
-        color: $main-red;
         margin-top: 3rem
     }
 </style>
