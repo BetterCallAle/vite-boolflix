@@ -3,13 +3,15 @@
   import AppHeader from "./components/AppHeader.vue";
   import AppSection from "./components/AppSection.vue";
   import AppSectionFlag from "./components/AppSectionFlag.vue";
+  import AppLoader from "./components/AppLoader.vue";
   import { store } from "./store";
   
   export default{
     components:{
       AppHeader,
       AppSection,
-      AppSectionFlag
+      AppSectionFlag,
+      AppLoader
     },
     data(){
       return{
@@ -20,7 +22,7 @@
       // call the api when clicking search button
       searchElement(){
         // clear the main element
-        this.store.isPageLoaded = false;
+        this.store.isPageLoading = true;
 
         // if user search is not empty
         if(this.store.userSearch){
@@ -44,7 +46,8 @@
             console.error("error", err);
           }).finally(()=> {
             // Show results
-            this.store.isPageLoaded = true
+            this.store.isPageLoading = false;
+            this.store.isPageLoaded = true;
           })
       },
 
@@ -61,7 +64,8 @@
               console.log("error", err);
             }).finally(()=> {
               // Show results
-              this.store.isPageLoaded = true
+              this.store.isPageLoading = false;
+              this.store.isPageLoaded = true;
             })
       }
     },
@@ -81,11 +85,12 @@
     <AppHeader @searchBtnClicked="searchElement"/>
 
     <main>
+      <AppLoader v-if="store.isPageLoading"/>
       <!-- If the search button is clicked -->
       <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
       <AppSection v-if="store.isPageLoaded" :section="'series'"/>
       <!-- Else -->
-      <AppSectionFlag v-else/>
+      <AppSectionFlag v-if="!store.isPageLoading && !store.isPageLoaded"/>
     </main>
   </div>
 </template>
