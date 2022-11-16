@@ -19,7 +19,6 @@
     methods:{
       //reset the page
       resetPage(){
-        this.isPageLoaded = false;
         this.store.movies = [];
         this.store.series = [];
         this.store.userSearch = "";
@@ -27,13 +26,25 @@
 
       // call the api when clicking search button
       searchElement(){
+        //clear the movies and series array in store
+        this.store.movies = [];
+        this.store.series = [];
         // if user search is not empty
         if(this.store.userSearch){
-          // call movies API
-          this.callTheApiMovies()
-
-          // call series API
-          this.callTheApiSeries()
+          //if user select is both
+          if(this.store.userSelect === "both"){
+            // call movies API
+            this.callTheApiMovies();
+            // call series API
+            this.callTheApiSeries();
+            //else if is movies
+          } else if(this.store.userSelect === "movies"){
+            // call the movies api
+            this.callTheApiMovies();
+          } else {
+            //call the series api
+            this.callTheApiSeries();
+          }
         }
       },
 
@@ -66,10 +77,10 @@
     },
     computed:{
       apiMoviesUrl(){
-        return this.store.apiMoviesURL + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
+        return this.store.apiURL + "movie?" + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
       },
       apiSeriesUrl(){
-        return this.store.apiSeriesURL + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
+        return this.store.apiURL + "tv?" + "api_key=" + this.store.apiKey + "&query=" + this.store.userSearch;
       }
     }
   }
@@ -80,11 +91,11 @@
     <AppHeader @searchBtnClicked="searchElement" @logoClicked="resetPage"/>
 
     <main>
-      <!-- If the search button is clicked -->
+      <!-- If there are movies or series -->
       <AppSection v-if="store.movies.length" :section="'movies'"/>
       <AppSection v-if="store.series.length" :section="'series'"/>
-      <!-- Else -->
-      <AppSectionFlag v-if="!store.movies.length && !store.series.length"/>
+      <!-- Before clicking the 'search' button -->
+      <AppSectionFlag v-else/>
     </main>
   </div>
 </template>
