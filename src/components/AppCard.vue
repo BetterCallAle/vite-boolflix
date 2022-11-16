@@ -13,12 +13,13 @@
                 isImgInDatabase: false,
                 flagInDatabase: ["it", "de", "en", "fr", "ja"],
                 emptyStars: 5,
+                genres: [],
                 store
             }
         },
         created(){
             this.checkIfThereIsImg();
-            this.convertVotes()
+            this.convertVotes();
         },
 
         methods:{
@@ -49,7 +50,8 @@
         <div class="ms_card-wrapper">
             <!-- card img -->
             <div class="ms_card-img">
-                <img :src="store.coverURL + element.poster_path" :alt="`Cover di ${title}`">
+                <img v-if="!element.poster_path" :src="getImgPath('Image_not_available')" alt="Image not available" class="img-not-avaible">
+                <img v-else :src="store.coverURL + element.poster_path" :alt="`Cover di ${title}`">
             </div>
             <!-- /card img -->
     
@@ -74,8 +76,8 @@
     
                     <li>
                         <span class="text-red">Vote: </span>
-                        <i class="fa-solid fa-star" v-for="star in element.vote_average"></i>
-                        <i class="fa-regular fa-star" v-for="star in emptyStars"></i>
+                        <i class="fa-solid fa-star" v-for="star in element.vote_average" :key="star"></i>
+                        <i class="fa-regular fa-star" v-for="star in emptyStars" :key="star"></i>
                     </li>
     
                     <li> 
@@ -111,6 +113,10 @@
                 width: 100%;
                 object-fit: cover;
                 object-position: center;
+            }
+
+            .img-not-avaible{
+                height: 100%;
             }
         }
     
