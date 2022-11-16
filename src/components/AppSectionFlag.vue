@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "AppSearchFlag"
+    name: "AppSearchFlag",
 }
 </script>
 

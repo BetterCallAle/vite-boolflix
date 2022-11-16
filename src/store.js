@@ -7,5 +7,7 @@ export const store = reactive({
     userSelect: "both",
     coverURL: "http://image.tmdb.org/t/p/w342/",
     movies: [],
-    series: []
+    series: [],
+    moviesCalled: false,
+    seriesCalled: false
 })

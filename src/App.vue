@@ -21,6 +21,8 @@
       resetPage(){
         this.store.movies = [];
         this.store.series = [];
+        this.store.moviesCalled = false;
+        this.store.seriesCalled = false;
         this.store.userSearch = "";
       },
 
@@ -29,6 +31,8 @@
         //clear the movies and series array in store
         this.store.movies = [];
         this.store.series = [];
+        this.store.moviesCalled = false;
+        this.store.seriesCalled = false;
         // if user search is not empty
         if(this.store.userSearch){
           //if user select is both
@@ -53,9 +57,10 @@
           .get(this.apiMoviesUrl)
           .then(resp =>{
             // add the json data in store
-            this.store.movies = resp.data.results
+            this.store.movies = resp.data.results;
             // clear the input
-            this.store.userSearch = ""
+            this.store.userSearch = "";
+            this.store.moviesCalled = true;
           }).catch(err => {
             console.log("error", err);
           })
@@ -67,9 +72,10 @@
             .get(this.apiSeriesUrl)
             .then(resp =>{
               // add the json data in store
-              this.store.series = resp.data.results
+              this.store.series = resp.data.results;
               // clear the input
-              this.store.userSearch = ""
+              this.store.userSearch = "";
+              this.store.seriesCalled = true;
             }).catch(err =>{
               console.log("error", err);
             })
@@ -92,10 +98,10 @@
 
     <main>
       <!-- Before clicking the 'search' button -->
-      <AppSectionFlag v-if="!store.movies.length && !store.series.length"/>
+      <AppSectionFlag v-if="!store.seriesCalled && !store.moviesCalled"/>
       <!-- If there are movies or series -->
-      <AppSection v-if="store.movies.length" :section="'movies'"/>
-      <AppSection v-if="store.series.length" :section="'series'"/>
+      <AppSection v-if="store.moviesCalled" :section="'movies'"/>
+      <AppSection v-if="store.seriesCalled" :section="'series'"/>
     </main>
   </div>
 </template>
