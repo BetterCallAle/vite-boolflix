@@ -95,19 +95,22 @@
 <style lang="scss" scoped>
 @use "../styles/partials/variables" as *;
 .ms_card{
-    height: 100%;
     background-color: $header-bg;
     border: 1px solid white;
 
     /* Card wrapper */
     .ms_card-wrapper{
-        height: 100%;
+        height: $card-height;
         transform: rotateY(0deg);
         transition: all 500ms linear;
 
         .ms_card-img{
             img{
                 display: block;
+                height: $card-height;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
             }
         }
     
