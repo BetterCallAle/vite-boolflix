@@ -57,7 +57,7 @@
             // clear the input
             this.store.userSearch = ""
           }).catch(err => {
-            console.error("error", err);
+            console.log("error", err);
           })
       },
 
@@ -91,11 +91,11 @@
     <AppHeader @searchBtnClicked="searchElement" @logoClicked="resetPage"/>
 
     <main>
+      <!-- Before clicking the 'search' button -->
+      <AppSectionFlag v-if="!store.movies.length && !store.series.length"/>
       <!-- If there are movies or series -->
       <AppSection v-if="store.movies.length" :section="'movies'"/>
       <AppSection v-if="store.series.length" :section="'series'"/>
-      <!-- Before clicking the 'search' button -->
-      <AppSectionFlag v-else/>
     </main>
   </div>
 </template>
