@@ -23,16 +23,12 @@
         this.store.series = [];
         this.store.moviesCalled = false;
         this.store.seriesCalled = false;
-        this.store.userSearch = "";
       },
 
       // call the api when clicking search button
       searchElement(){
         //clear the movies and series array in store
-        this.store.movies = [];
-        this.store.series = [];
-        this.store.moviesCalled = false;
-        this.store.seriesCalled = false;
+        this.resetPage()
         // if user search is not empty
         if(this.store.userSearch){
           //if user select is both
@@ -58,11 +54,12 @@
           .then(resp =>{
             // add the json data in store
             this.store.movies = resp.data.results;
-            // clear the input
-            this.store.userSearch = "";
-            this.store.moviesCalled = true;
           }).catch(err => {
             console.log("error", err);
+          }).finally(()=>{
+            // clear the input and make the results visible
+            this.store.userSearch = "";
+            this.store.moviesCalled = true;
           })
       },
 
@@ -73,11 +70,12 @@
             .then(resp =>{
               // add the json data in store
               this.store.series = resp.data.results;
-              // clear the input
-              this.store.userSearch = "";
-              this.store.seriesCalled = true;
             }).catch(err =>{
               console.log("error", err);
+            }).finally(()=>{
+              // clear the input and make the results visible
+              this.store.userSearch = "";
+              this.store.seriesCalled = true;
             })
       }
     },
