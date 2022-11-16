@@ -17,6 +17,14 @@
       }
     },
     methods:{
+      //reset the page
+      resetPage(){
+        this.isPageLoaded = false;
+        this.store.movies = [];
+        this.store.series = [];
+        this.store.userSearch = "";
+      },
+
       // call the api when clicking search button
       searchElement(){
         // if user search is not empty
@@ -39,9 +47,6 @@
             this.store.userSearch = ""
           }).catch(err => {
             console.error("error", err);
-          }).finally(()=> {
-            // Show results
-            this.store.isPageLoaded = true;
           })
       },
 
@@ -56,9 +61,6 @@
               this.store.userSearch = ""
             }).catch(err =>{
               console.log("error", err);
-            }).finally(()=> {
-              // Show results
-              this.store.isPageLoading = false;
             })
       }
     },
@@ -75,14 +77,14 @@
 
 <template>
   <div class="app-wrapper">
-    <AppHeader @searchBtnClicked="searchElement"/>
+    <AppHeader @searchBtnClicked="searchElement" @logoClicked="resetPage"/>
 
     <main>
       <!-- If the search button is clicked -->
-      <AppSection v-if="store.isPageLoaded" :section="'movies'"/>
-      <AppSection v-if="store.isPageLoaded" :section="'series'"/>
+      <AppSection v-if="store.movies.length" :section="'movies'"/>
+      <AppSection v-if="store.series.length" :section="'series'"/>
       <!-- Else -->
-      <AppSectionFlag v-else/>
+      <AppSectionFlag v-if="!store.movies.length && !store.series.length"/>
     </main>
   </div>
 </template>

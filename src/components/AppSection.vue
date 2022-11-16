@@ -47,10 +47,7 @@
 
             <!-- Section Main -->
             <div class="section-main">
-                <!-- If no movies or series were found: -->
-                <h2 v-if="!store[section].length">No {{section}} were found</h2>
-                <!-- Else -->
-                <div v-else class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
                     <div class="col" v-for="element in store[section]" :key="element.id">
                         <!-- Cards -->
                         <AppCard :title="element[sectionTitle]" :originalTitle="element[sectionOriginalTitle]" :element="element"/>

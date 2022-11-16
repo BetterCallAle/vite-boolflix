@@ -14,7 +14,7 @@
     <header class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
             <div class="logo">
-                <a href="#">
+                <a href="#" @click="$emit('logoClicked')">
                     <h1 class="text-red">Boolflix</h1>
                 </a>
             </div>
